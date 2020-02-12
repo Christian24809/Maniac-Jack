@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Script/Mundo1.gd" type="Script" id=1]
+[ext_resource path="res://environment/layers/middle.png" type="Texture" id=2]
+[ext_resource path="res://Recursos.tres" type="TileSet" id=3]
+[ext_resource path="res://Escenas/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Musica/001 Golden Acorn.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Musica/1_4943166951473021036.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Musica/jump.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Musica/1_4945053533037658227.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Script/cielo.gd" type="Script" id=9]
+[ext_resource path="res://environment/layers/back.png" type="Texture" id=10]
+
+[sub_resource type="AudioStreamSample" id=1]
+format = 1
+loop_begin = 1
+loop_end = 1
+
+[node name="Mundo 1" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="planta de mierda" type="Sprite" parent="."]
+position = Vector2( 2445.42, 298.25 )
+texture = ExtResource( 2 )
+offset = Vector2( 21.1246, 85.1155 )
+
+[node name="Adelante" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 15, 15 )
+cell_quadrant_size = 15
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+editor/display_folded = true
+position = Vector2( 27.6218, 44.7898 )
+z_as_relative = false
+
+[node name="Audio del nivel" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2( -28.5957, -44.7898 )
+scale = Vector2( 1.03526, 1 )
+stream = ExtResource( 5 )
+volume_db = 1.0
+autoplay = true
+
+[node name="Perder" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 6 )
+
+[node name="Disparo" type="AudioStreamPlayer2D" parent="Player"]
+stream = SubResource( 1 )
+
+[node name="Salto" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 7 )
+
+[node name="Win" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 8 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+editor/display_folded = true
+scale = Vector2( 1.1, 1.1 )
+transform = Transform2D( 1.1, 0, 0, 1.1, 0, 0 )
+
+[node name="cielo" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 470, 0 )
+script = ExtResource( 9 )
+
+[node name="Cielo2" type="Sprite" parent="ParallaxBackground/cielo"]
+position = Vector2( 111.341, 511.753 )
+scale = Vector2( 1.2491, 1.77714 )
+texture = ExtResource( 10 )
+
+[node name="Cielo" type="Sprite" parent="ParallaxBackground/cielo"]
+position = Vector2( 109.787, 86.1436 )
+scale = Vector2( 1.2491, 1.77714 )
+texture = ExtResource( 10 )
+
+[node name="plantas" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="plantas" type="Sprite" parent="ParallaxBackground/plantas"]
+position = Vector2( 127.242, 246.435 )
+texture = ExtResource( 2 )
+
+[node name="plantas3" type="Sprite" parent="ParallaxBackground/plantas"]
+position = Vector2( -98.9649, 197.792 )
+texture = ExtResource( 2 )
+
+[node name="plantas2" type="Sprite" parent="ParallaxBackground/plantas"]
+position = Vector2( 1581.58, 229.814 )
+texture = ExtResource( 2 )
+offset = Vector2( 21.1246, 85.1155 )
